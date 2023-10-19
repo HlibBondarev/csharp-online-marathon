@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{10C5AC18-EA86-44F8-99FD-D13F023CF306}</ProjectGuid>
+    <ProjectGuid>{14F58B2E-57DB-46BF-A904-FC0E8666C30D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>task01</RootNamespace>
-    <AssemblyName>task01</AssemblyName>
+    <RootNamespace>task03</RootNamespace>
+    <AssemblyName>task03</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyAccessModifiers.cs" />
+    <Compile Include="Fraction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

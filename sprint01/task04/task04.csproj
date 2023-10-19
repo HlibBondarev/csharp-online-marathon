@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{10C5AC18-EA86-44F8-99FD-D13F023CF306}</ProjectGuid>
+    <ProjectGuid>{2B0137DC-CC54-4F57-99EA-580334A02D38}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>task01</RootNamespace>
-    <AssemblyName>task01</AssemblyName>
+    <RootNamespace>task04</RootNamespace>
+    <AssemblyName>task04</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyAccessModifiers.cs" />
+    <Compile Include="DisposePatternImplementer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
