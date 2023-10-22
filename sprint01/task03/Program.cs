@@ -11,6 +11,9 @@ namespace task03
             res = !new Fraction(-3, 100);
             res = new Fraction(-167, 100) * new Fraction(3, 2);
             res = new Fraction(-167, 100) / new Fraction(3, 2);
+            res = new Fraction(97, 24) / new Fraction(3, 2);
+            res = new Fraction(-100, 24) / new Fraction(3, 2);
+            res = new Fraction(-103, 24) / new Fraction(3, 2);
 
             var a = new Fraction(5, 4);
             var b = new Fraction(1, 2);
