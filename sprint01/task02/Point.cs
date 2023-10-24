@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 //Create a Point class which models a 2D point with x and y coordinates should contain:
 //Two instance variables x and y  of int type, that will be available only in this class.
@@ -29,17 +30,25 @@ namespace task02
 
         internal protected double Distance(int x, int y)
         {
-            return Math.Pow(Math.Pow(x - this.x, 2) + Math.Pow(y - this.y, 2), 0.5);
+            return Point.Distance(this.x, this.y, x, y);
         }
-
+        // DRY - don't repeat your code
+        // Changed using an upper code 
         internal protected double Distance(Point point)
         {
-            return Math.Pow(Math.Pow(x - point.x, 2) + Math.Pow(y - point.y, 2), 0.5);
+            return Distance(point.x, point.y);
         }
-
+        // DRY - don't repeat your code,
+        // Changed using an upper code 
         public static explicit operator double(Point point)
         {
-            return Math.Pow(Math.Pow(point.x, 2) + Math.Pow(point.y, 2), 0.5);
+            return Point.Distance(0, 0, point.x, point.y);
+            //return new Point(0, 0).Distance(point);
+        }
+
+        private static double Distance(int x1, int y1, int x2, int y2)
+        {
+            return Math.Pow(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2), 0.5);
         }
     }
 }

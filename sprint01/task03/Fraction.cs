@@ -88,9 +88,12 @@ namespace task03
 
         public override bool Equals(object obj)
         {
-            return obj is Fraction fraction &&
-                   numerator == fraction.numerator &&
-                   denominator == fraction.denominator;
+            // DRY - don't repeat your code
+            // change using an upper code 
+            return obj is Fraction fraction && this == fraction;
+            //return obj is Fraction fraction &&
+            //numerator == fraction.numerator &&
+            //denominator == fraction.denominator;
         }
 
         public override int GetHashCode()

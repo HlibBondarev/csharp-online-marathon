@@ -45,12 +45,15 @@ namespace task01
         /*bool*/
         internal protected void HasLivedHalfOfLife() { }
 
+        // DRY - don't repeat your code
+        // changed using an upper code
         public override bool Equals(object obj)
         {
-            return obj is MyAccessModifiers modifiers &&
-                   personalInfo == modifiers.personalInfo &&
-                   Age == modifiers.Age &&
-                   Name == modifiers.Name;
+            return obj is MyAccessModifiers modifiers && this == modifiers;
+            //return obj is MyAccessModifiers modifiers &&
+            //       personalInfo == modifiers.personalInfo &&
+            //       Age == modifiers.Age &&
+            //       Name == modifiers.Name;
         }
 
         public override int GetHashCode()

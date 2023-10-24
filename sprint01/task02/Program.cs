@@ -12,7 +12,6 @@ namespace task02
         {
             Point p1 = new Point(-1, -1);
             Point p2 = new Point(-4, 3);
-
             double l = (double)p2;
 
             Console.WriteLine(p1.Distance(p2));
