@@ -41,9 +41,7 @@ class ColouredDocument : IColoured, IDocument
     public string? Name { get; set; }
     public int Pages { get; set; }
     public ColourEnum Colour { get; }
-    public ColouredDocument()
-    {
-    }
+    public ColouredDocument() { }
     public ColouredDocument(ColourEnum colour)
     {
         Colour = colour;

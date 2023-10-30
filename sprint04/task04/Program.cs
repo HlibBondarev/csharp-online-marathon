@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
-var r1 = new Room<Rectangle>() { Height =25, Floor=new Rectangle { Length=5, Width=6} };
-var r2=r1.Clone();
+var r1 = new Room<Rectangle>() { Height = 25, Floor = new Rectangle { Length = 5, Width = 6 } };
+var r2 = r1.Clone();
 r1.Floor.Width = 333;
 r1.Floor.Length = 333;
-//Console.ReadKey();
+Console.ReadKey();
 
 //Define an Interface IShape with declared method Area() returning 0 by default (double type)
 //Define a class named Rectangle implementing the IShape interface.
@@ -83,22 +82,7 @@ class Room<T> : ICloneable, IComparable where T : IShape
     // a comparison by area of the floor
     public int CompareTo(object? obj)
     {
-        if (obj is not Room<T> o)
-        {
-            throw new ArgumentException("Argument is not Room<T>");
-        }
-        else if (Floor.Area() > o.Floor.Area())
-        {
-            return 1;
-        }
-        else if (Floor.Area() < o.Floor.Area())
-        {
-            return -1;
-        }
-        else
-        {
-            return 0;
-        }
+        return Floor.Area().CompareTo((obj as Room<T>).Floor.Area());
     }
 }
 
@@ -110,22 +94,7 @@ class RoomComparerByVolume<T> : IComparer<Room<T>> where T : IShape
 
     public int Compare(Room<T>? x, Room<T>? y)
     {
-        if (x == null || y == null)
-        {
-            throw new ArgumentException("One or both arguments is null");
-        }
-        else if (x.Volume() > y.Volume())
-        {
-            return 1;
-        }
-        else if (x.Volume() < y.Volume())
-        {
-            return -1;
-        }
-        else
-        {
-            return 0;
-        }
+        return x.Volume().CompareTo(y.Volume());
     }
 }
 
