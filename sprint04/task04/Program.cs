@@ -3,9 +3,11 @@
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 var r1 = new Room<Rectangle>() { Height = 25, Floor = new Rectangle { Length = 5, Width = 6 } };
-var r2 = r1.Clone();
+var r2 = r1.Clone();    // deep copy
+//var r2 = r1;          // reference copy, not shallow
 r1.Floor.Width = 333;
 r1.Floor.Length = 333;
+r1.Height = 250;
 Console.ReadKey();
 
 //Define an Interface IShape with declared method Area() returning 0 by default (double type)
@@ -24,7 +26,6 @@ Console.ReadKey();
 //Implement deep cloning
 //Add an implementation of IComparable interface for the Room<> class.
 //Implement a comparison by area of the floor.
-
 
 //Define a generic class RoomComparerByVolume<> implementing IComparer interface.
 //Impose a constraint on the type argument so that it should implement the IShape interface.
@@ -82,7 +83,14 @@ class Room<T> : ICloneable, IComparable where T : IShape
     // a comparison by area of the floor
     public int CompareTo(object? obj)
     {
-        return Floor.Area().CompareTo((obj as Room<T>).Floor.Area());
+        if (obj is Room<T> room)
+        {
+            return Floor.Area().CompareTo(room.Floor.Area());
+        }
+        else
+        {
+            throw new ArgumentException("Unable to compare: argument is not  Room<T>");
+        }
     }
 }
 
@@ -91,7 +99,6 @@ class Room<T> : ICloneable, IComparable where T : IShape
 //This comparer should perform comparison of rooms by room volume.
 class RoomComparerByVolume<T> : IComparer<Room<T>> where T : IShape
 {
-
     public int Compare(Room<T>? x, Room<T>? y)
     {
         return x.Volume().CompareTo(y.Volume());
