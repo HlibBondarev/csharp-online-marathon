@@ -25,6 +25,8 @@ enum ColourEnum
 interface IColoured
 {
     ColourEnum Colour { get => ColourEnum.Red; }
+    delegate ColourEnum ColourHandler(ColourEnum colour);
+    //event ColourHandler ColourChanged;
 }
 
 interface IDocument
