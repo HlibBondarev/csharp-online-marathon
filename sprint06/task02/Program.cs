@@ -78,9 +78,7 @@ namespace task02
         {
             Books = books;
             Filter = predicate;
-            bookEnumerator = (from book in Books
-                              where Filter(book)
-                              select book).GetEnumerator();
+            bookEnumerator = Books.GetEnumerator();
         }
 
         public Book Current { get; private set; }
@@ -94,12 +92,16 @@ namespace task02
 
         public bool MoveNext()
         {
-            bool result = bookEnumerator.MoveNext();
-            if (result)
+            while (bookEnumerator.MoveNext())
             {
-                Current = bookEnumerator.Current;
+                if (Filter(bookEnumerator.Current))
+                {
+                    Current = bookEnumerator.Current;
+                    return true;
+                }
             }
-            return result;
+            bookEnumerator.Reset();
+            return false;
         }
 
         public void Reset()
@@ -107,6 +109,46 @@ namespace task02
             bookEnumerator.Reset();
         }
     }
+
+    //public sealed class MyEnumerator : IEnumerator<Book>
+    //{
+    //    readonly IEnumerator<Book> bookEnumerator;
+    //    public IEnumerable<Book> Books { get; }
+    //    public Predicate<Book> Filter { get; set; } = (Book t) => true;
+
+    //    public MyEnumerator(IEnumerable<Book> books, Predicate<Book> predicate)
+    //    {
+    //        Books = books;
+    //        Filter = predicate;
+    //        bookEnumerator = (from book in Books
+    //                          where Filter(book)
+    //                          select book).GetEnumerator();
+    //    }
+
+    //    public Book Current { get; private set; }
+
+    //    object IEnumerator.Current { get => Current; }
+
+    //    public void Dispose()
+    //    {
+    //        bookEnumerator.Dispose();
+    //    }
+
+    //    public bool MoveNext()
+    //    {
+    //        bool result = bookEnumerator.MoveNext();
+    //        if (result)
+    //        {
+    //            Current = bookEnumerator.Current;
+    //        }
+    //        return result;
+    //    }
+
+    //    public void Reset()
+    //    {
+    //        bookEnumerator.Reset();
+    //    }
+    //}
     public class MyUtils
     {
         public static List<Book> GetFiltered(IEnumerable<Book> books, Predicate<Book> predicate)
