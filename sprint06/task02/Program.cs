@@ -1,9 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Collections.Generic;
-using System.Runtime.Intrinsics.X86;
-using System.Threading.Tasks;
-using System.Collections;
-using static System.Reflection.Metadata.BlobBuilder;
+﻿using System.Collections;
 using System.Linq;
 
 namespace task02
@@ -49,19 +44,16 @@ namespace task02
         // Properties:
         public IEnumerable<Book> Books { get; }
         public Predicate<Book> Filter { get; set; } = (Book t) => true;
-
         // Ctor:
         public Library(IEnumerable<Book> books)
         {
             Books = books;
         }
-
-        // Implementation of IEnumerator and IEnumerator<Book>
+        // Implementation of IEnumerable and IEnumerable<Book>
         public IEnumerator<Book> GetEnumerator()
         {
             return new MyEnumerator(Books, Filter);
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -73,23 +65,17 @@ namespace task02
         readonly IEnumerator<Book> bookEnumerator;
         public IEnumerable<Book> Books { get; }
         public Predicate<Book> Filter { get; set; } = (Book t) => true;
-
         public MyEnumerator(IEnumerable<Book> books, Predicate<Book> predicate)
         {
             Books = books;
             Filter = predicate;
             bookEnumerator = Books.GetEnumerator();
         }
-
+        // Implementation of IEnumerator and IEnumerator<Book>
         public Book Current { get; private set; }
-
         object IEnumerator.Current { get => Current; }
-
-        public void Dispose()
-        {
-            bookEnumerator.Dispose();
-        }
-
+        public void Reset() => bookEnumerator.Reset();
+        public void Dispose() => bookEnumerator.Dispose();
         public bool MoveNext()
         {
             while (bookEnumerator.MoveNext())
@@ -103,58 +89,13 @@ namespace task02
             bookEnumerator.Reset();
             return false;
         }
-
-        public void Reset()
-        {
-            bookEnumerator.Reset();
-        }
     }
 
-    //public sealed class MyEnumerator : IEnumerator<Book>
-    //{
-    //    readonly IEnumerator<Book> bookEnumerator;
-    //    public IEnumerable<Book> Books { get; }
-    //    public Predicate<Book> Filter { get; set; } = (Book t) => true;
-
-    //    public MyEnumerator(IEnumerable<Book> books, Predicate<Book> predicate)
-    //    {
-    //        Books = books;
-    //        Filter = predicate;
-    //        bookEnumerator = (from book in Books
-    //                          where Filter(book)
-    //                          select book).GetEnumerator();
-    //    }
-
-    //    public Book Current { get; private set; }
-
-    //    object IEnumerator.Current { get => Current; }
-
-    //    public void Dispose()
-    //    {
-    //        bookEnumerator.Dispose();
-    //    }
-
-    //    public bool MoveNext()
-    //    {
-    //        bool result = bookEnumerator.MoveNext();
-    //        if (result)
-    //        {
-    //            Current = bookEnumerator.Current;
-    //        }
-    //        return result;
-    //    }
-
-    //    public void Reset()
-    //    {
-    //        bookEnumerator.Reset();
-    //    }
-    //}
     public class MyUtils
     {
         public static List<Book> GetFiltered(IEnumerable<Book> books, Predicate<Book> predicate)
         {
-            var library = new Library(books);
-            library.Filter = predicate;
+            Library library = new(books) { Filter = predicate };
             return library.ToList();
         }
     }

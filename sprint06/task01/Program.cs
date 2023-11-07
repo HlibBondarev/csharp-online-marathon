@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace task01
 {
@@ -27,7 +28,6 @@ namespace task01
         {
             Console.WriteLine("Hello, World!");
             var children = new CircleOfChildren(new string[] { "Halya1", "Olya2", "Ira3", "Andriy4", "Josh5" });
-
             OutputUtils.ExitOutput(children, 3, 18);
 
             Console.ReadKey();
@@ -42,9 +42,11 @@ namespace task01
             this.names = names;
         }
 
-        public IEnumerable/*<string>*/ GetChildrenInOrder(int syllables, int numberOff = 0)
+        // Named enumerator using Queue<string>
+        public IEnumerable GetChildrenInOrder(int syllables, int numberOff = 0)
         {
-            int numberOfChildren = names.Count();
+            Queue<string> queue = new(names);
+            int numberOfChildren = queue.Count;
             if (syllables <= 0 || numberOfChildren == 0)
             {
                 yield break;
@@ -53,20 +55,60 @@ namespace task01
             {
                 numberOff = numberOfChildren;
             }
-            var children = names.ToArray();
             while (numberOff > 0)
             {
                 int k = syllables % numberOfChildren == 0 ? numberOfChildren - 1 : syllables % numberOfChildren - 1;
-                string name = children[k];
                 --numberOfChildren;
                 --numberOff;
-                string[] temp = new string[numberOfChildren];
-                Array.Copy(children, k + 1, temp, 0, numberOfChildren - k);
-                Array.Copy(children, 0, temp, numberOfChildren - k, k);
-                children = temp.ToArray();
-                yield return name;
+                Queue<string> temp = new();
+                while (true)
+                {
+                    if (k > 0)
+                    {
+                        temp.Enqueue(queue.Dequeue());
+                    }
+                    else if (k == 0)
+                    {
+                        yield return queue.Dequeue();
+                    }
+                    else
+                    {
+                        if (temp.Count == 0)
+                        {
+                            break;
+                        }
+                        queue.Enqueue(temp.Dequeue());
+                    }
+                    --k;
+                }
             }
         }
+
+        //public IEnumerable GetChildrenInOrder(int syllables, int numberOff = 0)
+        //{
+        //    string[] children = names.ToArray();
+        //    int numberOfChildren = children.Length;
+        //    if (syllables <= 0 || numberOfChildren == 0)
+        //    {
+        //        yield break;
+        //    }
+        //    if (numberOff > numberOfChildren || numberOff <= 0)
+        //    {
+        //        numberOff = numberOfChildren;
+        //    }
+        //    while (numberOff > 0)
+        //    {
+        //        int k = syllables % numberOfChildren == 0 ? numberOfChildren - 1 : syllables % numberOfChildren - 1;
+        //        string name = children[k];
+        //        --numberOfChildren;
+        //        --numberOff;
+        //        string[] temp = new string[numberOfChildren];
+        //        Array.Copy(children, k + 1, temp, 0, numberOfChildren - k);
+        //        Array.Copy(children, 0, temp, numberOfChildren - k, k);
+        //        children = temp/*.ToArray()*/;
+        //        yield return name;
+        //    }
+        //}
     }
 
     public class OutputUtils
