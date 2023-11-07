@@ -31,6 +31,7 @@
                 { new Student(4, "Andriy") }
             };
             var commonList = Student.GetCommonStudents(list1, list2);
+            //var commonList = Student.GetCommonStudents(new List<Student>(), new List<Student>());
             foreach (var students in commonList)
             {
                 Console.WriteLine(students.Id + " " + students.Name);
@@ -60,8 +61,9 @@
         public static HashSet<Student> GetCommonStudents(List<Student> list1, List<Student> list2)
         {
             HashSet<Student> hSet1 = new(list1);
-            HashSet<Student> hSet2 = new(list2);
-            return hSet1.Intersect(hSet2).ToHashSet();
+            //HashSet<Student> hSet2 = new(list2);
+            //return hSet1.Intersect(hSet2).ToHashSet();
+            return hSet1.Intersect(list2).ToHashSet();
         }
     }
 }
