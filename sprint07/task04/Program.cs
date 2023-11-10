@@ -1,4 +1,7 @@
-﻿namespace task04
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace task04
 {
     // Please, create a static method GetWord takes 2 string parameters: 
     // first - initial string with a sequence of words separated by space
@@ -21,8 +24,14 @@
 
         public static string GetWord(string input, string seed = "")
         {
-            IEnumerable<char> result = input.Split(' ').Prepend(seed).MaxBy(x => x.Length).SkipWhile(ch => ch != 'a');
-            return result.Any() ? new string(result.ToArray()) : string.Empty;
+            return input.Split(' ')
+                        .Aggregate(seed,
+                                    (x, y) => x.Length < y.Length ? y : x,
+                                    max => !max.SkipWhile(ch => ch != 'a').Any() ? string.Empty : new string(max.SkipWhile(ch => ch != 'a').ToArray())
+                                  );
+
+            //IEnumerable<char> result = input.Split(' ').Prepend(seed).MaxBy(x => x.Length).SkipWhile(ch => ch != 'a');
+            //return result.Any() ? new string(result.ToArray()) : string.Empty;
 
             //string t = input.Split(' ').MaxBy(x => x.Length);
             //string word = t.Length <= seed.Length ? seed : t;

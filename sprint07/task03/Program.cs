@@ -10,15 +10,16 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World3!");
-            double sum = ProductWithCondition(new List<int> { 4, 1, 6, 9, 5 }, (x) => x % 2 == 1);
+            double sum = ProductWithCondition(new List<int> { 4, 1, 6, 9, 5, 3, 10 }, (x) => x % 2 == 1);
             Console.WriteLine(sum);
             Console.ReadKey();
         }
 
         public static int ProductWithCondition(List<int> list, Func<int, bool> condition)
         {
-            IEnumerable<int> query = list.Where(x => condition(x));
-            return query.Any() ? query.Aggregate((x, y) => x * y) : 1;
+            return list.Aggregate(1, (x, y) => condition(y) ? x * y : x);
+            //IEnumerable<int> query = list.Where(condition);
+            //return query.Any() ? query.Aggregate((x, y) => x * y) : 1;
         }
     }
 }
