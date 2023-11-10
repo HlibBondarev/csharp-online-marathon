@@ -93,10 +93,7 @@ namespace task02
 
     public class MyUtils
     {
-        public static List<Book> GetFiltered(IEnumerable<Book> books, Predicate<Book> predicate)
-        {
-            Library library = new(books) { Filter = predicate };
-            return library.ToList();
-        }
+        public static List<Book> GetFiltered(IEnumerable<Book> books, Predicate<Book> predicate) =>
+         new Library(books) { Filter = predicate }.ToList();
     }
 }

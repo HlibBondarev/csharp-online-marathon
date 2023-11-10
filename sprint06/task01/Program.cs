@@ -84,31 +84,31 @@ namespace task01
             }
         }
 
-        //public IEnumerable GetChildrenInOrder(int syllables, int numberOff = 0)
-        //{
-        //    string[] children = names.ToArray();
-        //    int numberOfChildren = children.Length;
-        //    if (syllables <= 0 || numberOfChildren == 0)
-        //    {
-        //        yield break;
-        //    }
-        //    if (numberOff > numberOfChildren || numberOff <= 0)
-        //    {
-        //        numberOff = numberOfChildren;
-        //    }
-        //    while (numberOff > 0)
-        //    {
-        //        int k = syllables % numberOfChildren == 0 ? numberOfChildren - 1 : syllables % numberOfChildren - 1;
-        //        string name = children[k];
-        //        --numberOfChildren;
-        //        --numberOff;
-        //        string[] temp = new string[numberOfChildren];
-        //        Array.Copy(children, k + 1, temp, 0, numberOfChildren - k);
-        //        Array.Copy(children, 0, temp, numberOfChildren - k, k);
-        //        children = temp/*.ToArray()*/;
-        //        yield return name;
-        //    }
-        //}
+        public IEnumerable GetChildrenInOrder1(int syllables, int numberOff = 0)
+        {
+            string[] children = names.ToArray();
+            int numberOfChildren = children.Length;
+            if (syllables <= 0 || numberOfChildren == 0)
+            {
+                yield break;
+            }
+            if (numberOff > numberOfChildren || numberOff <= 0)
+            {
+                numberOff = numberOfChildren;
+            }
+            while (numberOff > 0)
+            {
+                int k = syllables % numberOfChildren == 0 ? numberOfChildren - 1 : syllables % numberOfChildren - 1;
+                string name = children[k];
+                --numberOfChildren;
+                --numberOff;
+                string[] temp = new string[numberOfChildren];
+                Array.Copy(children, k + 1, temp, 0, numberOfChildren - k);
+                Array.Copy(children, 0, temp, numberOfChildren - k, k);
+                children = temp/*.ToArray()*/;
+                yield return name;
+            }
+        }
     }
 
     public class OutputUtils
