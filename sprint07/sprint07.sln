@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task01", "task01\task01.csproj", "{4ECD4EC1-F847-46C4-93C7-8030BCFCD2E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task01", "task01\task01.csproj", "{4ECD4EC1-F847-46C4-93C7-8030BCFCD2E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task02", "task02\task02.csproj", "{7D92C074-2CBB-4A98-A092-E74DDFDD57F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task02", "task02\task02.csproj", "{7D92C074-2CBB-4A98-A092-E74DDFDD57F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task03", "task03\task03.csproj", "{24C76063-2472-4281-B5E5-F423B8F4F269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task03", "task03\task03.csproj", "{24C76063-2472-4281-B5E5-F423B8F4F269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task04", "task04\task04.csproj", "{B2C71AE3-5EB1-4AC9-BB47-39702123C71A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task04", "task04\task04.csproj", "{B2C71AE3-5EB1-4AC9-BB47-39702123C71A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task05", "task05\task05.csproj", "{A0280876-DEA6-433B-8A79-3DC1A0487AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task05", "task05\task05.csproj", "{A0280876-DEA6-433B-8A79-3DC1A0487AFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task06", "task06\task06.csproj", "{1A914009-C95C-4AE7-A279-550E8D1B125A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task06", "task06\task06.csproj", "{1A914009-C95C-4AE7-A279-550E8D1B125A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testTaskJson", "testTaskJson\testTaskJson.csproj", "{5021F9D8-19D4-4CEA-8E9D-842B478A46D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{1A914009-C95C-4AE7-A279-550E8D1B125A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A914009-C95C-4AE7-A279-550E8D1B125A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A914009-C95C-4AE7-A279-550E8D1B125A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5021F9D8-19D4-4CEA-8E9D-842B478A46D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5021F9D8-19D4-4CEA-8E9D-842B478A46D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5021F9D8-19D4-4CEA-8E9D-842B478A46D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5021F9D8-19D4-4CEA-8E9D-842B478A46D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

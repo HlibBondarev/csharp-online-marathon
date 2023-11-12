@@ -57,6 +57,12 @@ namespace task05
         }
     }
 
+    [JsonSourceGenerationOptions(WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault)]
+    [JsonSerializable(typeof(Worker))]
+    internal partial class WorkerGenerationContext : JsonSerializerContext
+    {
+    }
+
     public class Worker
     {
         [JsonIgnore]
@@ -72,12 +78,34 @@ namespace task05
             Salary = salary;
             Department = department;
         }
-        public string Serialize() => JsonSerializer.Serialize<Worker>(new Worker(Name, Salary, Department),
-                                     options: new JsonSerializerOptions
-                                     {
-                                         WriteIndented = true,
-                                         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
-                                     });
-        public static Worker? Deserialize(string jsonString) => JsonSerializer.Deserialize<Worker>(jsonString);
+        public string Serialize() => JsonSerializer.Serialize(
+                                                                this,
+                                                                WorkerGenerationContext.Default.Worker
+                                                             );
+        public static Worker? Deserialize(string jsonString) => JsonSerializer.Deserialize<Worker>(jsonString, WorkerGenerationContext.Default.Worker);
     }
+
+    //public class Worker
+    //{
+    //    [JsonIgnore]
+    //    public int Id { get; set; }
+    //    [JsonPropertyName("Full name")]
+    //    public string Name { get; set; }
+    //    public decimal Salary { get; set; }
+    //    public Department? Department { get; set; } = null;
+
+    //    public Worker(string name, decimal salary, Department department)
+    //    {
+    //        Name = name;
+    //        Salary = salary;
+    //        Department = department;
+    //    }
+    //    public string Serialize() => JsonSerializer.Serialize<Worker>(this),
+    //                                 options: new JsonSerializerOptions
+    //                                 {
+    //                                     WriteIndented = true,
+    //                                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+    //                                 });
+    //    public static Worker? Deserialize(string jsonString) => JsonSerializer.Deserialize<Worker>(jsonString);
+    //}
 }
