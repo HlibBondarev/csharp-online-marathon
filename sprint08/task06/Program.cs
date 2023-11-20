@@ -57,11 +57,11 @@ namespace task06
         }
     }
 
-    public class PersonInTheShop
+    class PersonInTheShop
     {
-        public static void Enter()  {Console.WriteLine("Enter"); Thread.Sleep(1000); }
-        public static void SelectGroceries() => Console.WriteLine("Select Groceries");
-        public static void Pay() => Console.WriteLine("Pay");
-        public static void Leave() => Console.WriteLine("Leave");
+        protected static void Enter()  {Console.WriteLine("Enter"); Thread.Sleep(1000); }
+        protected static void SelectGroceries() => Console.WriteLine("Select Groceries");
+        protected static void Pay() => Console.WriteLine("Pay");
+        protected static void Leave() => Console.WriteLine("Leave");
     }
 }
